@@ -1,0 +1,108 @@
+body {
+	margin: 5%;
+}
+
+.title-page {
+	text-align: center;
+	font-size: 300%;
+}
+
+.col-6 {
+	width: 50%;
+}
+
+.col-3 {
+	width: 25%;
+}
+
+.dog-name {
+	text-align: center;
+	font-size: 250%;
+}
+
+.section-1{
+	width: 100%;
+}
+
+.article-1{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#secondDogPicture {
+	max-height: 200px;
+}
+
+.image-clicks {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#firstDogPicture {
+	width: 50%;
+}
+
+.score-container{
+	width: 50%;
+	text-align: center;
+	font-size: 200%;
+}
+
+.click-me {
+	margin-top: 0;
+}
+
+/*
+.image-left{
+	width: 22%;
+	margin-right: 3%;
+}
+
+.image-right{
+	width: 22%;
+	margin-left: 3%;
+}
+
+
+.image-score{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+
+
+
+
+.right-side {
+	text-align: right;
+	float: right;
+}
+
+.image-dog-left{
+	margin-right: 3%;
+}
+
+.image-dog-right{
+	margin-left: 3%;
+}
+
+/*
+
+
+
+
+.score-1{
+	width: 25%;
+	text-align: left;
+}
+.score-2{
+	width: 25%;
+	text-align: right;
+}
+
+.times-clicked{
+	font-size: xx-large;
+}
+*/
