@@ -16,7 +16,7 @@ dogPictureRight.addEventListener('click',function(){
 })
 */
 
-/* PART WITH LIST */
+/* PART WITH LIST : LIST OF DOGS SEE COMMIT OF 10 JUNE 2017 'CHANGE TO LIST OF DOGS INSTEAD OF 2 DOGS'*/
 var numberOfItems = 3;
 var dogArray = [];
 
