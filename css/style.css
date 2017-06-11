@@ -104,3 +104,7 @@ article {
 	flex-wrap: wrap;
 }
 
+.dog-picture {
+	max-width: 100%;
+}
+
