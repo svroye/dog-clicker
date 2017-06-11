@@ -35,6 +35,7 @@ var $sideList = $('#list');
 var $art= $('article');
 var $imgContainer = $('.img-container');
 var $timesClicked = $('.times-clicked');
+var $dogName = $('.click-me');
 
 // Let's loop over the numbers in our array
 for (var i = 0; i < numberOfItems; i++) {
@@ -48,6 +49,7 @@ for (var i = 0; i < numberOfItems; i++) {
 			var imgToAdd= '<img class="image-large" src="images/' + elem.imageName + '" id="dog' + elem.id + '">';
 			$imgContainer.empty();
 			$imgContainer.append(imgToAdd);
+			$dogName.html(elem.dogName)
 			var imgAdded = document.getElementById('dog' + elem.id);
 			$timesClicked.html(elem.score);
 			
