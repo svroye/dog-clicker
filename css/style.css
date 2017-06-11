@@ -97,6 +97,7 @@ body {
 
 .score-container {
 	width: 50%;
+	text-align: center;
 }
 
 article {
@@ -106,5 +107,25 @@ article {
 
 .dog-picture {
 	max-width: 100%;
+}
+
+.buttons {
+	margin: 2%;
+}
+
+.admin-details-form {
+	display: table;
+	border-collapse:separate;
+	border-spacing:5px;
+}
+
+.admin-details-form label, input, button {
+	display: table-cell;
+}
+
+
+.invisible {
+	display: none;
+	visibility: hidden;
 }
 

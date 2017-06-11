@@ -79,22 +79,23 @@ var $imgDog = $('.dog-picture');
 var model = {
 	currentDog: null,
 	dogs: [
-		{
-			imageName: "images/fenji1.jpg",
-			dogName: "Fenji 1",
-			score: 0
-		},
-		{
-			imageName: "images/fenji2.jpg",
-			dogName: "Fenji 2",
-			score: 0
-		},
-		{
-			imageName: "images/fenji3.jpg",
-			dogName: "Fenji 3",
-			score: 0
-		}
-	]
+	{
+		imageName: "images/fenji1.jpg",
+		dogName: "Fenji 1",
+		score: 0
+	},
+	{
+		imageName: "images/fenji2.jpg",
+		dogName: "Fenji 2",
+		score: 0
+	},
+	{
+		imageName: "images/fenji3.jpg",
+		dogName: "Fenji 3",
+		score: 0
+	}
+	],
+	adminIsShowing: false
 };
 
 var viewClicker = {
@@ -134,36 +135,80 @@ var viewList = {
 
             // make a new cat list item and set its text
             elem = document.createElement('label');
-            elem.innerHTML = '<input type="radio" name="dogName" class="list-item" value="dog">' + dog.dogName + '<br>';
-            //elem.setAttribute('type','radio');
-            //elem.setAttribute('name','dogname');
-            //elem.setAttribute('class','list-item');
-            //elem.setAttribute('value','dog');
-
+            if(i===0){
+            	elem.innerHTML = '<input type="radio" name="dogName" class="list-item" value="dog" checked="checked">' + dog.dogName + '<br>';
+            } else{
+            	elem.innerHTML = '<input type="radio" name="dogName" class="list-item" value="dog">' + dog.dogName + '<br>';
+            }
 
             // on click, setCurrentCat and render the catView
             // (this uses our closure-in-a-loop trick to connect the value
             //  of the cat variable to the click event function)
             elem.addEventListener('click', (function(dogCopy) {
-                return function() {
-                    octopus.setCurrentDog(dogCopy);
-                    viewClicker.render();
-                };
+            	return function() {
+            		octopus.setCurrentDog(dogCopy);
+            		viewClicker.render();
+            		adminView.render();
+            	};
             })(dog));
 
             // finally, add the element to the list
             this.dogList.appendChild(elem);
-
         }
-
-	}
+    }
 };
+
+var adminView = {
+	init: function(){
+		this.adminButton = document.getElementById('admin-button');
+		this.cancelButton = document.getElementById('cancel-button');
+		this.saveButton = document.getElementById('save-button');
+		this.adminDetails = document.getElementById('admin-details');
+
+		this.adminButton.addEventListener('click', function() {
+			console.log('admin button pressed');
+			octopus.adminButtonClicked();
+			adminView.render();
+		});
+
+
+		this.cancelButton.addEventListener('click', function(){
+			console.log('cancel button pressed');
+			octopus.cancelButtonClicked();
+			adminView.render();
+		});
+
+		this.saveButton.addEventListener('click', function(){
+			console.log('save button pressed');
+			octopus.saveButtonClicked();
+			adminView.render();
+			viewClicker.render();
+		});
+
+		this.render();
+	}, 
+	render: function(){
+		
+		if(octopus.getAdminStatus()){
+			console.log('JA');
+			var el = octopus.getCurrentDog();
+			document.getElementById('input-name').value = el.dogName;
+			document.getElementById('input-image').value = el.imageName;
+			document.getElementById('input-score').value = el.score;
+			this.adminDetails.classList.remove('invisible');
+		} else {
+			this.adminDetails.classList.add('invisible');
+			console.log('NEE');
+		}
+	}
+}
 
 var octopus = {
 	init: function(){
 		model.currentDog = model.dogs[0];
 		viewList.init();
 		viewClicker.init();
+		adminView.init();
 	},
 	getCurrentDog: function(){
 		return model.currentDog;
@@ -171,12 +216,41 @@ var octopus = {
 	getDogs: function(){
 		return model.dogs;
 	},
+	getAdminStatus: function(){
+		console.log('**********'+ model.adminIsShowing);
+		return model.adminIsShowing;
+	},
 	setCurrentDog: function(dog){
 		model.currentDog = dog;
 	},
 	incrementCounter: function(){
 		model.currentDog.score++;
 		viewClicker.render();
+	},
+	showAdmin: function(){
+		model.adminIsShowing = true;
+	},
+	hideAdmin: function(){
+		model.adminIsShowing = false;
+	},
+	adminButtonClicked : function(){
+		
+		if(model.adminIsShowing){
+			this.hideAdmin();
+		} else{
+			this.showAdmin();
+		}
+	},
+	cancelButtonClicked: function(){
+		this.hideAdmin();
+		
+	},
+	saveButtonClicked: function(){
+		var el = this.getCurrentDog();
+		el.dogName = document.getElementById('input-name').value;
+		el.imageName = document.getElementById('input-image').value;
+		el.score = document.getElementById('input-score').value;
+		this.hideAdmin();
 	}
 };
 
