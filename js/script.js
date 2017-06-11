@@ -49,14 +49,13 @@ for (var i = 0; i < numberOfItems; i++) {
 			$imgContainer.empty();
 			$imgContainer.append(imgToAdd);
 			var imgAdded = document.getElementById('dog' + elem.id);
-			var score =0;
-			$timesClicked.html(score);
+			$timesClicked.html(elem.score);
 			
 			
 
 			imgAdded.addEventListener('click',function(){
-				score++;
-				$timesClicked.html(score);
+				elem.score++;
+				$timesClicked.html(elem.score);
 			});
 			
 		}
